@@ -15,7 +15,7 @@ class Ability
               post.user == user
           end
           
-           can :destroy, Comment do |post|
+           can :destroy, Comment do |comment|
               comment.user == user
            end
           

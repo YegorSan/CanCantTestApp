@@ -23,14 +23,16 @@
      
      <%= render post.comments %>
      
+     <% end %>
+     
      <br>
      <p>Add Comment</p>
      <%= form_for([post, post.comments.build]) do |f| %>
      <%= f.text_area :content %>
+     <br>
      <%= submit_tag "Add" %>
      <% end %>
 </div>
 <br>
 <br>
-<% end %>
 <% end %>
