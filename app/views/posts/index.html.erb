@@ -1,0 +1,36 @@
+<h1>BootsBook</h1>
+<%= link_to 'New Post', new_post_path %>
+<br>
+<br>
+
+<% @posts.each do |post| %>
+
+ <div style="border: 1px solid black; background-color: #add8e6;">
+     <h3><%= post.content %></h3> 
+     <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %>
+     <br>
+     
+     <% if can? :update, post %>
+     <%= link_to 'Edit', edit_post_path(post) %>
+     
+     
+     <%= link_to 'Destroy', post, method: :delete %>
+     <% end %>
+     
+     <% if post.comments.any? %>
+     
+     <h4>Comments</h4>
+     
+     <%= render post.comments %>
+     
+     <br>
+     <p>Add Comment</p>
+     <%= form_for([post, post.comments.build]) do |f| %>
+     <%= f.text_area :content %>
+     <%= submit_tag "Add" %>
+     <% end %>
+</div>
+<br>
+<br>
+<% end %>
+<% end %>
